@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      
+ 
+    <h:head>
+        <title>Welcome</title>
+        
+        <h:outputStylesheet name="/css/bootstrap.min.css"/>  
+<style type="text/css">  
+#disply {  
+border-collapse: collapse;  
+width: 100%;  
+}  
+th, td {  
+text-align: left;  
+padding: 8px;  
+}  
+  
+tr:nth-child(even){background-color: #f2f2f2}  
+th {  
+background-color: #4CAF50;  
+color: white;  
+}  
+</style>  
+        
+    </h:head>
+    <h:body>
+    
+    		HELLOO JSF CRUD EXAMPLE INDEX PAGE
+    		
+    		<h:form>
+    		<table>
+    		
+    			<h:inputHidden value="#{studentMB.studentId}" />
+    			<tr>
+    				<td><h:outputLabel value="Name:"></h:outputLabel></td>
+    				<td><h:inputText id="name" value="#{studentMB.studentName}"></h:inputText></td> 
+    			</tr>
+    			
+    			<tr>
+    				<td><h:outputLabel value="Roll number:"></h:outputLabel></td>
+    				<td><h:inputText id="rollno" value="#{studentMB.rollNo}" ></h:inputText></td> 
+    			</tr>
+    			
+    			<tr>
+    				<td><h:outputLabel value="gamil:"></h:outputLabel></td>
+    				<td><h:inputText id="gamil" value="#{studentMB.gmail}"></h:inputText></td> 
+    			</tr>
+    			
+    			<tr>
+    				<td><h:outputLabel value="Contact:"></h:outputLabel></td>
+    				<td><h:inputText id="contact" value="#{studentMB.contact}"></h:inputText></td> 
+    			</tr>
+    			
+    			 <tr>
+		    	<td><h:outputLabel >SelectOneRadio</h:outputLabel></td>
+		    	<td><h:selectOneRadio  value="#{studentMB.gender}">
+		    		<f:selectItem itemValue="Male" itemLabel="Male"  />  
+					<f:selectItem itemValue="Female" itemLabel="Female"/>   
+		    	</h:selectOneRadio></td>
+		    </tr>
+    			
+    			
+    			<tr>
+    				<td><h:outputLabel value="Department:"></h:outputLabel></td>
+    				<td>
+    					<h:selectOneMenu value="#{studentMB.department}">
+						   	<f:selectItem itemValue="Civl Engineering" itemLabel="Civl Engineering" />
+						   	<f:selectItem itemValue="Electrical Engineering" itemLabel="Electrical Engineering" />
+						   	<f:selectItem itemValue="Mechanical Engineering" itemLabel="Mechanical Engineering" />
+						   	<f:selectItem itemValue="Software Engineering" itemLabel="Software Engineering" />
+						   	<f:selectItem itemValue="Electronics Engineering" itemLabel="Electronics Engineering" />
+						   	<f:selectItem itemValue="Computer Systems Engineering" itemLabel="Computer Engineering" />
+						</h:selectOneMenu>
+    				</td>
+    			</tr>
+    		
+    		
+    		</table>
+    		
+    		  		<h:commandButton value="ADD" action="#{studentMB.addStudent()}"></h:commandButton> 
+    		  		
+    		  		<h:commandButton value="Edit" action="#{studentMB.updateRecord()}"></h:commandButton> 
+    		  		
+    		</h:form>
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		<br></br><br></br><br></br><br></br>
+    		
+    		
+    		
+    		
+    		
+    		<h:form>
+    		
+    		<h:dataTable id="disply" value="#{studentMB.students()}" var="s" border="2"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">ID</f:facet>
+    				<!-- row record -->
+    				#{s.studentId}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Name</f:facet>
+    				#{s.studentName}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Roll number</f:facet>
+    				#{s.rollNo}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Gender</f:facet>
+    				#{s.gender}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Department</f:facet>
+    				#{s.department}
+    			</h:column>
+    			
+    			
+    			<h:column>
+    				<f:facet name="header">Email</f:facet>
+    				#{s.gmail}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Contact</f:facet>
+    				#{s.contact}
+    			</h:column>
+    			
+    			
+    			
+    			<h:column>  
+					<f:facet name="header">Delete</f:facet>  
+					<h:commandButton value="Delete" action="#{studentMB.delete(s.studentId)}"></h:commandButton>
+				</h:column> 
+				
+				<h:column>  
+					<f:facet name="header">Delete</f:facet>  
+					<h:commandButton value="Update" action="#{studentMB.update(s.studentId)}" class="btn btn-primary"></h:commandButton>
+				</h:column>  
+    		
+    		</h:dataTable>
+    		</h:form>
+    </h:body>
+</html>
